@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  drf:
+    build:
+      context: .
+      dockerfile: dockerfiles/drf
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./logs/drf:/opt/api/logs
+      - ./src/api:/opt/api
+  db:
+    image: postgres:latest
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+
+volumes:
+  pgdata:
