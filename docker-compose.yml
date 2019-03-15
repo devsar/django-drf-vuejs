@@ -2,9 +2,10 @@ version: '3'
 
 services:
   frontend:
-    image: 'node:lts-alpine'
+    build:
+      context: .
+      dockerfile: dockerfiles/vuejs
     command: sh -c "npm install && npm run dev"
-    working_dir: /opt/frontend
     depends_on:
       -  drf
     ports:
@@ -16,6 +17,7 @@ services:
       - HOST=0.0.0.0
       - PORT=8080
       - NODE_PATH=/opt/frontend/node_modules
+      - USERGROUPS_ENAB=yes
   drf:
     build:
       context: .

@@ -1,22 +1,19 @@
-FROM node:lts-alpine
+FROM node:lts
+
+# Change node user uid and gid from `1000` to `10000`
+# So it not clashes with local user (that in most cases is `1000`)
+RUN usermod -u 10000 node
+RUN groupmod -g 10000 node
+
+# TODO: Give UID using env vars
+RUN useradd -b /opt -ms /bin/bash -u 1000 frontend
 
 # make the 'app' folder the current working directory
 WORKDIR /opt/frontend
 
-# install project dependencies
-# copy both 'package.json' and 'package-lock.json' (if available)
-COPY src/frontend/package*.json ./
-RUN npm i @vue/cli @vue/cli-init
-RUN npm i --only=dev
+USER frontend
 
-COPY src/frontend/ .
+# copy project files and folders to the current working directory (i.e. 'app' folder)
+# COPY ./src/frontend/ .
 
 EXPOSE 8080
-CMD [ "npm", "run", "dev" ]
-
-# TODO: Setup build process
-# build app for production with minification
-# install simple http server for serving static content
-# RUN npm install -g http-server
-# RUN npm run build
-# CMD [ "/opt/frontend/node_modules/bin/npm", "run", "dev" ]
