@@ -15,6 +15,7 @@ services:
     environment:
       - HOST=0.0.0.0
       - PORT=8080
+      - NODE_PATH=/opt/frontend/node_modules
   drf:
     build:
       context: .

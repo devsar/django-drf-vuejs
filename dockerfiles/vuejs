@@ -1,26 +1,19 @@
 FROM node:11.11
 
-# install simple http server for serving static content
-RUN npm install -g http-server
-
-# RUN useradd -b /opt -ms /bin/bash -u 1000 frontend
-
 # make the 'app' folder the current working directory
 WORKDIR /opt/frontend
 
+# install project dependencies
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY src/frontend/package*.json ./
-
-# install project dependencies
-RUN npm install
-
-# copy project files and folders to the current working directory (i.e. 'app' folder)
-COPY ./src/frontend/ .
+RUN npm i -dd
 
 EXPOSE 8080
 CMD [ "npm", "run", "dev" ]
 
 # TODO: Setup build process
 # build app for production with minification
+# install simple http server for serving static content
+# RUN npm install -g http-server
 # RUN npm run build
-# CMD [ "http-server", "dist" ]
+# CMD [ "/opt/frontend/node_modules/bin/npm", "run", "dev" ]
