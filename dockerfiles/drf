@@ -2,6 +2,7 @@ FROM python:latest
 
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends \
+        python3-psycopg2 \
         postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
@@ -11,6 +12,8 @@ RUN useradd -b /opt -ms /bin/bash -u 1000 api
 WORKDIR /opt/api
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
+RUN pip install psycopg2
+
 COPY ./src/api /opt/api
 
 EXPOSE 8000
