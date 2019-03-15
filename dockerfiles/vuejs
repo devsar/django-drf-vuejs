@@ -1,4 +1,4 @@
-FROM node:11.11
+FROM node:lts-alpine
 
 # make the 'app' folder the current working directory
 WORKDIR /opt/frontend
@@ -6,7 +6,10 @@ WORKDIR /opt/frontend
 # install project dependencies
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY src/frontend/package*.json ./
-RUN npm i -dd
+RUN npm i @vue/cli @vue/cli-init
+RUN npm i --only=dev
+
+COPY src/frontend/ .
 
 EXPOSE 8080
 CMD [ "npm", "run", "dev" ]
