@@ -1,5 +1,5 @@
 # About me 
-This will setup, using docker-compose, a basic Django + DRF + Vuejs project.
+This will setup, using docker-compose, a basic Django + DRF + Vuejs `(vue-cli project)` project.
 
 # First steps 
 Start containers (in background, with `-d` is optionall):
@@ -27,3 +27,18 @@ Start all containers:
   - Directory `src`:
     - Directory `api`: Here is the Django + DRF project (the `backend`).
     - Drirectory `frontend`: Here is the Vuejs project.
+
+# Code the backend
+
+  - Install `pipenv` with your distro package manager, or as you prefer.
+  - In the same directory where `Pipfile` and `Pipfile.lock` exists, run: `pipenv install`
+  - Done, now you are able to add your bugs at `src/api`
+
+# Code the frontend
+You need to have `vue-cli` installed. To install it follow this instructions:
+
+  - Create a directory where `npm i -g ...` will be installed. Run: `mkdir ~/.npm-global`
+  - Let `npm` where to find installed packages. Run: `npm config set prefix '~/.npm-global'`
+  - Let your `bash` knows where `excecutable` installed by `npm` are. Run: ` echo "export PATH=~/.npm-global/bin:$PATH" >> ~/.bashrc `. Apply changes made on `$PATH` running: `source ~/.bashrc`, or open a new terminal. 
+  - Install `@vue-cli`, run: `npm install -g @vue/cli`
+  - Install `@vue/cli-init`, run: `npm install -g @vue/cli-init`
