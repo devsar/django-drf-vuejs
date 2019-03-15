@@ -1,4 +1,6 @@
-django
-djangorestframework
-markdown
-django-filter
+-i https://pypi.org/simple
+django-filter==2.1.0
+django==2.1.7
+djangorestframework==3.9.2
+markdown==3.0.1
+pytz==2018.9
