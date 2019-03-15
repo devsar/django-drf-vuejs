@@ -1,6 +1,20 @@
 version: '3'
 
 services:
+  frontend:
+    build:
+      context: .
+      dockerfile: dockerfiles/vuejs
+    depends_on:
+      -  drf
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./logs/vuejs:/opt/frontend/logs
+      - ./src/frontend:/opt/frontend
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8080
   drf:
     build:
       context: .
