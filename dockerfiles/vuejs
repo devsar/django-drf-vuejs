@@ -1,15 +1,18 @@
-FROM node:11.11
+FROM node:lts
 
-# install simple http server for serving static content
-RUN npm install -g http-server
+# Change node user uid that defaults to `1000`
+RUN usermod -u 10000 node
 
-# RUN useradd -b /opt -ms /bin/bash -u 1000 frontend
+# TODO: Give UID using env vars
+RUN useradd -b /opt -ms /bin/bash -u 1000 frontend
 
 # make the 'app' folder the current working directory
 WORKDIR /opt/frontend
 
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY src/frontend/package*.json ./
+
+USER frontend
 
 # install project dependencies
 RUN npm install
@@ -18,9 +21,3 @@ RUN npm install
 COPY ./src/frontend/ .
 
 EXPOSE 8080
-CMD [ "npm", "run", "dev" ]
-
-# TODO: Setup build process
-# build app for production with minification
-# RUN npm run build
-# CMD [ "http-server", "dist" ]

@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: dockerfiles/vuejs
+    command: sh -c "npm install && npm run dev"
     depends_on:
       -  drf
     ports:
