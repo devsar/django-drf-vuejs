@@ -1,23 +1,20 @@
 FROM node:lts
 
-# Change node user uid that defaults to `1000`
-RUN usermod -u 10000 node
+RUN apt-get -yq update \
+  && apt-get install -yq git
 
-# TODO: Give UID using env vars
-RUN useradd -b /opt -ms /bin/bash -u 1000 frontend
+RUN npm install -g @vue/cli
 
-# make the 'app' folder the current working directory
 WORKDIR /opt/frontend
 
-# copy both 'package.json' and 'package-lock.json' (if available)
-COPY src/frontend/package*.json ./
-
-USER frontend
-
-# install project dependencies
-RUN npm install
-
-# copy project files and folders to the current working directory (i.e. 'app' folder)
-COPY ./src/frontend/ .
+RUN chown node. /opt/frontend
 
 EXPOSE 8080
+
+USER node
+
+COPY src/frontend/package*.json ./
+
+RUN npm install
+
+CMD ["npm", "run", "dev"]
