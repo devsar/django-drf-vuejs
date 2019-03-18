@@ -16,6 +16,8 @@ services:
       - HOST=0.0.0.0
       - PORT=8080
       - CHOKIDAR_USEPOLLING=true
+      - API_HOST=drf
+      - API_PORT=${DRF_PORT}
   drf:
     build:
       context: .
