@@ -1,6 +1,11 @@
 # About me 
 This will setup, using docker-compose, a basic Django + DRF + Vuejs `(vue-cli project)` project.
 
+# Status:
+
+- [x]  Ready to be used for development (hot reload, etc) 
+- [ ]  Ready to be used on Production (nginx conf, prod settings, etc) 
+
 # First steps 
 Start containers (in background, with `-d` is optionall):
   - `docker-compose up -d`
@@ -13,6 +18,11 @@ Create super user:
 
 Start all containers:
   - `docker-compose up`
+
+# How to use it
+First, be sure to complete `First steps` (describe above).
+Then, after you start all containers (with `docker-compose up`, you are free to start coding the backend or frontend (the code will be auto-reloaded, both
+the backend and frontend, each time you save the files in your editor).
 
 # Directory structure
 
@@ -28,13 +38,13 @@ Start all containers:
     - Directory `api`: Here is the Django + DRF project (the `backend`).
     - Drirectory `frontend`: Here is the Vuejs project.
 
-# Code the backend
+# Code the backend (to install requirements locally in your HOST)
 
   - Install `pipenv` with your distro package manager, or as you prefer.
   - In the same directory where `Pipfile` and `Pipfile.lock` exists, run: `pipenv install`
   - Done, now you are able to add your bugs at `src/api`
 
-# Code the frontend
+# Code the frontend (to install requirements locally in your HOST)
 You need to have `vue-cli` installed. To install it follow this instructions:
 
   - Create a directory where `npm i -g ...` will be installed. Run: `mkdir ~/.npm-global`
