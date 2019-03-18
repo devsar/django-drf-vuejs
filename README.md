@@ -37,14 +37,14 @@ the backend and frontend, each time you save the files in your editor).
     - Directory `api`: Here is the Django + DRF project (the `backend`).
     - Drirectory `frontend`: Here is the Vuejs project.
 
-# Code the backend (to install requirements locally in your HOST)
+# Code the backend (with requirements installed in your HOST)
 
   - Install `pipenv` with your distro package manager, or as you prefer.
   - In the same directory where `Pipfile` and `Pipfile.lock` exists, run: `pipenv install`
   - Done, now you are able to add your bugs at `src/api`
 
-# Code the frontend (to install requirements locally in your HOST)
-You need to have `vue-cli` installed. To install it follow this instructions:
+# Code the frontend (with requirements installed in your HOST)
+You need to have `vue-cli` installed (if you already have it, omit this section). To install it follow this instructions:
 
   - Create a directory where `npm i -g ...` will be installed. Run: `mkdir ~/.npm-global`
   - Let `npm` where to find installed packages. Run: `npm config set prefix '~/.npm-global'`
