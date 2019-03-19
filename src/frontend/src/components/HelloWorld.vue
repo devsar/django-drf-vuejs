@@ -1,6 +1,18 @@
 <template>
   <div class="hello">
+
     <h1>{{ msg }}</h1>
+
+    <h2>Connection with API</h2>
+    <p>Status: {{ apiStatus }}</p>
+
+    <h2>List of API users</h2>
+    <div :key="idx" v-for="(user, idx) in apiUsers">
+      <p>{{ user.email }}</p>
+      <p>{{ user.username }}</p>
+      <p>{{ user.url }}</p>
+    </div>
+
     <h2>Essential Links</h2>
     <ul>
       <li>
@@ -84,12 +96,32 @@
 </template>
 
 <script>
+import api from '@/api'
+
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      apiStatus: 'NOT CONNECTED',
+      apiUsers: []
     }
+  },
+  methods: {
+    fetchAPIUsers: async function () {
+      console.log('fetching DRF Users:')
+      await api.drf.get('/users/')
+        .then((response) => {
+          this.apiUsers = response.data
+          this.apiStatus = 'Connected'
+          console.log('Got API users with success.')
+        })
+        .catch((error) => console.log('Something went wrong:', error))
+    }
+  },
+  created () {
+    console.log('Devsar demo, testing api connection...')
+    this.fetchAPIUsers()
   }
 }
 </script>
