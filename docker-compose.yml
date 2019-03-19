@@ -35,7 +35,7 @@ services:
       - DJANGO_SETTINGS_MODULE=api.settings
   db:
     image: postgres:latest
-    restart: always
+    restart: unless-stopped
     volumes:
       - pgdata:/var/lib/postgresql/data/
     environment:
