@@ -7,8 +7,12 @@ WORKDIR /opt/frontend
 
 EXPOSE 8080
 
+COPY entrypoints/vuejs.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh
+
 COPY src/frontend/package*.json ./
 
-RUN npm install -dd
+USER ${UID}:${GID}
 
 CMD ["npm", "run", "dev"]
