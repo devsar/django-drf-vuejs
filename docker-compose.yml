@@ -6,19 +6,19 @@ services:
     build:
       context: .
       dockerfile: dockerfiles/vuejs
+    entrypoint: /entrypoint.sh
     depends_on:
       -  drf
     ports:
       - "${FRONTEND_PORT}:8080"
     volumes:
       - ./src/frontend:/opt/frontend
-      - /opt/frontend/node_modules
     environment:
       - HOST=0.0.0.0
       - PORT=8080
       - CHOKIDAR_USEPOLLING=true
-      - API_HOST=drf
-      - API_PORT=${DRF_PORT}
+      - API_HOST=${DRF_RUNNING_ON_HOST}
+      - API_PORT=${DRF_RUNNING_ON_PORT}
   drf:
     user: "${UID}:${GID}"
     build:
