@@ -49,28 +49,42 @@ DRF container uses `python:latest` (more info at `https://hub.docker.com/_/pytho
 ## Django related things
 
   - Question: Can i run `manage.py` scripts from my host? If `true`, how?
-    - Answer: Yes you can. Just remember to start your commands with: 
-      `docker-compose run drf python manage.py <your options here>`
-      So for example, if you want to list migration, you would write:
-      `docker-compose run drf python manage.py showmigrations`
-      Another example, if you want to get the `manage.py` help, you would write:
-      `docker-compose run drf python manage.py --help`
+  - Answer: Yes you can. Just remember to start your commands with: 
+
+    `docker-compose run drf python manage.py <your options here>`
+
+    So for example, if you want to list migration, you would write:
+
+    `docker-compose run drf python manage.py showmigrations`
+
+    Another example, if you want to get the `manage.py` help, you would write:
+
+    `docker-compose run drf python manage.py --help`
 
   - Question: Can i run `django-admin` script from my host? If `true`, how?
-    - Answer: Yes you can. Just remember to start your commands with: 
-      `docker-compose run drf django-admin <your options here>`
-      So for example, to get `django-admin` help, you would write:
-      `docker-compose run drf django-admin --help`
-      Another example, if you want to get a `python interpreter` on the container, you would write:
-      `docker-compose run drf django-admin shell`
+
+  - Answer: Yes you can. Just remember to start your commands with: 
+
+    `docker-compose run drf django-admin <your options here>`
+
+    So for example, to get `django-admin` help, you would write:
+
+    `docker-compose run drf django-admin --help`
+
+    Another example, if you want to get a `python interpreter` on the container, you would write:
+
+    `docker-compose run drf django-admin shell`
 
   - Question: How can i create a django app?
-    - Answer: Just use the command:
-      `docker-compose run drf python manage.py startapp <your app name here>`
-      You will see the recently created app inside `src/api`
+
+  - Answer: Just use the command:
+
+    `docker-compose run drf python manage.py startapp <your app name here>`
+
+    You will see the recently created app inside `src/api`
 
   - Question: Do i need to install requirements locally on my system?
-    - Answer: Not if you dont want. As described above, you should be able to excecute all django commands as described above.
+  - Answer: Not if you dont want. As described above, you should be able to excecute all django commands as described above.
 
 ## (optional) Install requirements locally on your host 
 
