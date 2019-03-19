@@ -2,6 +2,7 @@ version: '3'
 
 services:
   frontend:
+    user: "${UID}:${GID}"
     build:
       context: .
       dockerfile: dockerfiles/vuejs
@@ -19,6 +20,7 @@ services:
       - API_HOST=drf
       - API_PORT=${DRF_PORT}
   drf:
+    user: "${UID}:${GID}"
     build:
       context: .
       dockerfile: dockerfiles/drf
@@ -28,6 +30,9 @@ services:
       - "${DRF_PORT}:8000"
     volumes:
       - ./src/api:/opt/api
+    environment:
+      - PYTHONPATH=/opt/api
+      - DJANGO_SETTINGS_MODULE=api.settings
   db:
     image: postgres:latest
     restart: always
