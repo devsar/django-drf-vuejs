@@ -48,7 +48,7 @@ DRF container uses `python:latest` (more info at `https://hub.docker.com/_/pytho
 
 ## Django related things
 
-  - Question: Can i run `manage.py` scripts from my host? If `true`, how?
+  > - Question: Can i run `manage.py` scripts from my host? If `true`, how?
   - Answer: Yes you can. Just remember to start your commands with: 
 
     `docker-compose run drf python manage.py <your options here>`
@@ -61,7 +61,7 @@ DRF container uses `python:latest` (more info at `https://hub.docker.com/_/pytho
 
     `docker-compose run drf python manage.py --help`
 
-  - Question: Can i run `django-admin` script from my host? If `true`, how?
+  > - Question: Can i run `django-admin` script from my host? If `true`, how?
 
   - Answer: Yes you can. Just remember to start your commands with: 
 
@@ -75,7 +75,7 @@ DRF container uses `python:latest` (more info at `https://hub.docker.com/_/pytho
 
     `docker-compose run drf django-admin shell`
 
-  - Question: How can i create a django app?
+  > - Question: How can i create a django app?
 
   - Answer: Just use the command:
 
@@ -83,7 +83,7 @@ DRF container uses `python:latest` (more info at `https://hub.docker.com/_/pytho
 
     You will see the recently created app inside `src/api`
 
-  - Question: Do i need to install requirements locally on my system?
+  > - Question: Do i need to install requirements locally on my system?
   - Answer: Not if you dont want. As described above, you should be able to excecute all django commands as described above.
 
 ## (optional) Install requirements locally on your host 
