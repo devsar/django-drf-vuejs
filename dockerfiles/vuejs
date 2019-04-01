@@ -1,18 +1,19 @@
-FROM node:lts
-
-RUN apt-get -yq update \
-  && apt-get install -yq git
+FROM node:lts-alpine
 
 WORKDIR /opt/frontend
 
-EXPOSE 8080
-
-COPY entrypoints/vuejs.sh /entrypoint.sh
-
-RUN chmod +x /entrypoint.sh
-
+# copy both 'package.json' and 'package-lock.json' (if available)
 COPY src/frontend/package*.json ./
 
-USER ${UID}:${GID}
+# install project dependencies
+RUN npm install
 
-CMD ["npm", "run", "dev"]
+COPY ./src/frontend/ .
+
+RUN npm run
+
+EXPOSE 8080
+
+ENTRYPOINT ["npm", "run"]
+
+CMD ["dev"]

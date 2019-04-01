@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: dockerfiles/vuejs
-    entrypoint: /entrypoint.sh
+    # entrypoint: /entrypoint.sh
     depends_on:
       -  backend
     ports:
