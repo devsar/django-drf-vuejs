@@ -20,7 +20,7 @@ Start all containers:
   - `docker-compose up`
 
 # How to use it
-First, be sure to complete `First steps` (describe above).
+First, be sure to complete `First steps` (described above).
 Then, after you start all containers (with `docker-compose up`, you are free to start coding the backend or frontend (the code will be auto-reloaded, both
 the backend and frontend, each time you save the files in your editor).
 
