@@ -8,31 +8,35 @@ services:
       dockerfile: dockerfiles/vuejs
     entrypoint: /entrypoint.sh
     depends_on:
-      -  drf
+      -  backend
     ports:
       - "${FRONTEND_PORT}:8080"
     volumes:
       - ./src/frontend:/opt/frontend
     environment:
       - HOST=0.0.0.0
-      - PORT=8080
+      - PORT=${FRONTEND_PORT}
       - CHOKIDAR_USEPOLLING=true
-      - API_HOST=${DRF_RUNNING_ON_HOST}
-      - API_PORT=${DRF_RUNNING_ON_PORT}
-  drf:
+      - API_HOST=${BACKEND_RUNNING_ON}
+      - API_PORT=${BACKEND_PORT}
+  backend:
     user: "${UID}:${GID}"
     build:
       context: .
-      dockerfile: dockerfiles/drf
+      dockerfile: dockerfiles/backend
     depends_on:
       - db
     ports:
-      - "${DRF_PORT}:8000"
+      - "${BACKEND_PORT}:8000"
     volumes:
-      - ./src/api:/opt/api
+      - ./src/backend:/opt/backend
     environment:
-      - PYTHONPATH=/opt/api
+      - PYTHONPATH=/opt/backend
       - DJANGO_SETTINGS_MODULE=api.settings
+      - FRONTEND_PORT=${FRONTEND_PORT}
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
   db:
     image: postgres:latest
     restart: unless-stopped
